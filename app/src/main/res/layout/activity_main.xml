@@ -51,6 +51,7 @@
       app:iconTint="@color/black"
       app:iconPadding="1dp"/>
   <Button
+      android:id="@+id/setting_button"
       android:layout_width="match_parent"
       android:layout_margin="16dp"
       android:layout_height="0dp"
