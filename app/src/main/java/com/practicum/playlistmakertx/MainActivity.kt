@@ -18,14 +18,14 @@ class MainActivity : AppCompatActivity() {
         val buttonSearch = findViewById<Button>(R.id.search_button)
         val buttonSearchClickListener: View.OnClickListener = object : View.OnClickListener{
             override fun onClick(v: View?) {
-                Toast.makeText(this@MainActivity, "Нажали на Поиск", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MainActivity, "Нажали на Поиск!", Toast.LENGTH_SHORT).show()
             }
         }
         buttonSearch.setOnClickListener(buttonSearchClickListener)
 
         val buttonLibrary = findViewById<Button>(R.id.library_button)
         buttonLibrary.setOnClickListener {
-            Toast.makeText(this@MainActivity, "Нажали на Библиотеку", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@MainActivity, "Нажали на Библиотеку!",Toast.LENGTH_SHORT).show()
         }
 
 
