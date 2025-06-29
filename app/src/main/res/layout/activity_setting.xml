@@ -44,7 +44,8 @@
         android:layout_margin="@dimen/standart_padding"
         android:foreground="?attr/selectableItemBackground"
         android:clickable="true"
-        android:focusable="true">
+        android:focusable="true"
+        android:id="@+id/share_button">
 
         <TextView
             android:layout_width="wrap_content"
@@ -54,6 +55,7 @@
             android:textColor="@color/black_YP"
             android:layout_gravity="start"/>
         <ImageButton
+
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_gravity="end"
@@ -69,7 +71,8 @@
         android:layout_margin="@dimen/standart_padding"
         android:foreground="?attr/selectableItemBackground"
         android:clickable="true"
-        android:focusable="true">
+        android:focusable="true"
+        android:id="@+id/support_botton">
 
         <TextView
             android:layout_width="wrap_content"
@@ -79,6 +82,7 @@
             android:textColor="@color/black_YP"
             android:layout_gravity="start"/>
         <ImageButton
+
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_gravity="end"
@@ -92,7 +96,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:foreground="?attr/selectableItemBackground"
-        android:clickable="true">
+        android:clickable="true"
+        android:id="@+id/user_agreement">
 
         <TextView
             android:layout_width="wrap_content"
@@ -102,6 +107,7 @@
             android:textColor="@color/black_YP"
             android:layout_gravity="start"/>
         <ImageButton
+
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_gravity="end"
