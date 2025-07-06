@@ -42,7 +42,7 @@
     </style>
     <style name="BackGroundMainActivity">
         <item name="android:theme">@style/Theme.PlayListMakerTX</item>
-        <item name="android:background">@color/blue_YP</item>
+        <item name="android:background">?attr/colorPrimary</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:orientation">vertical</item>

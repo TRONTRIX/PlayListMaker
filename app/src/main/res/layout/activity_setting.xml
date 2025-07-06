@@ -2,24 +2,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
+    android:theme="@style/Theme.PlayListMakerTX"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/white_YP"
-    >
+    android:background="?attr/colorPrimary">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/tool_bar"
+        android:theme="@style/Theme.PlayListMakerTX"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:navigationIcon="@drawable/arrow_back"
+        app:navigationIconTint="?attr/colorOnPrimary"
         app:title="@string/Setting"
-        app:titleTextColor="@color/black_YP"
+        app:titleTextColor="?attr/colorOnPrimary"
         android:fontFamily="@font/ys_display_medium"
         />
 
 
     <Switch
+        android:theme="@style/Theme.PlayListMakerTX"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/standart_padding"
@@ -30,6 +33,7 @@
         android:textSize="16sp"/>
 
     <FrameLayout
+        android:theme="@style/Theme.PlayListMakerTX"
         style="@style/FrameLayoutOnSettingActivity"
         android:id="@+id/share_button">
 
