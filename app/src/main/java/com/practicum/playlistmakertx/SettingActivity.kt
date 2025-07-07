@@ -24,7 +24,7 @@ class SettingActivity : AppCompatActivity() {
 
         val userSettingButtonActivity = findViewById<FrameLayout>(R.id.user_agreement)
         userSettingButtonActivity.setOnClickListener {
-            val url = Uri.parse("https://yandex.ru/legal/practicum_offer/")
+            val url = Uri.parse(getString(R.string.practicumOffer))
             val intent = Intent(Intent.ACTION_VIEW, url)
             startActivity(intent)
         }
@@ -33,7 +33,7 @@ class SettingActivity : AppCompatActivity() {
         userSupportBottonActivity.setOnClickListener {
             val intent = Intent(Intent.ACTION_SENDTO)
             intent.data = Uri.parse("mailto:")
-            intent.putExtra(Intent.EXTRA_EMAIL, arrayOf("thedrof3cool@mail.ru"))
+            intent.putExtra(Intent.EXTRA_EMAIL, arrayOf(getString(R.string.developerEmail)))
             intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.subjectEmail))
             intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.textSupportEmail))
             startActivity(intent)

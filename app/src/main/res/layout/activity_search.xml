@@ -22,25 +22,27 @@
 
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:theme="@style/Theme.PlayListMakerTX"
         android:id="@+id/search_linear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_margin="@dimen/standart_padding"
         android:orientation="horizontal"
         android:clipToOutline="true"
         android:background="@drawable/lauout_bg"
-        android:backgroundTint="@color/light_grey_YP">
+        android:backgroundTint="?attr/colorSecondary">
 
         <EditText
             android:theme="@style/Theme.PlayListMakerTX"
             android:id="@+id/inputEditText"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="8dp"
             android:paddingLeft="3dp"
-            android:background="@color/light_grey_YP"
+            android:background="?attr/colorSecondary"
             android:hint="@string/Search"
+            android:textColor="?attr/colorOnSecondary"
             android:textSize="16sp"
             android:maxLines="1"
             android:inputType="text"
@@ -58,7 +60,8 @@
             android:src="@drawable/clear"
             android:layout_marginRight="11dp"
             app:tint="?attr/colorAccent"
-            android:visibility="gone"/>
+            android:background="?attr/colorSecondary"
+            />
     </LinearLayout>
 
 

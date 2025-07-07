@@ -6,6 +6,8 @@
         <item name="colorPrimary">@color/black_YP</item>
         <item name="colorOnPrimary">@color/white_YP</item>
         <item name="colorPrimaryContainer">@color/white_YP</item>
+        <item name="colorOnSecondary">@color/black_YP</item>
+        <item name="colorSecondary">@color/white_YP</item>
         <!-- Surface colors -->
         <item name="colorSurface">@color/white_YP</item>
         <item name="colorOnSurface">@color/black_YP</item>

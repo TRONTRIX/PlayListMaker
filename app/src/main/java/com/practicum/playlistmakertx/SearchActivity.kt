@@ -1,9 +1,11 @@
 package com.practicum.playlistmakertx
 
+import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -14,10 +16,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.appbar.MaterialToolbar
 
 class SearchActivity : AppCompatActivity() {
-    companion object {
-        const val SEARCH_TEXT = "SEARCH_TEXT_KEY"
-        const val DEFAULT_TEXT = ""
-    }
+
     private var savedEditTextSearch: String = DEFAULT_TEXT
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,10 +37,12 @@ class SearchActivity : AppCompatActivity() {
 
         val inputEditText = findViewById<EditText>(R.id.inputEditText)
         val clearButton = findViewById<ImageView>(R.id.clearIcon)
+        val saveEditTextOnCreate = findViewById<EditText>(R.id.inputEditText)
 
         clearButton.setOnClickListener {
             inputEditText.setText("")
             savedEditTextSearch = ""
+            hideKeyboard(inputEditText)
         }
 
         val simpleTextWatcher = object : TextWatcher {
@@ -56,7 +57,7 @@ class SearchActivity : AppCompatActivity() {
         }
 
         inputEditText.addTextChangedListener(simpleTextWatcher)
-
+        saveEditTextOnCreate.setText(savedEditTextSearch)
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -75,15 +76,20 @@ class SearchActivity : AppCompatActivity() {
         super.onRestoreInstanceState(savedInstanceState)
         savedEditTextSearch = savedInstanceState.getString(SEARCH_TEXT, DEFAULT_TEXT)
     }
-    override fun onResume() {
-        super.onResume()
-        findViewById<EditText>(R.id.inputEditText).setText(savedEditTextSearch)
-    }
+
     private fun clearButtonVisibility(s: CharSequence?): Int {
         return if (s.isNullOrEmpty()) {
             View.GONE
         } else {
             View.VISIBLE
         }
+    }
+    private fun hideKeyboard(editText: EditText) {
+        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(editText.windowToken, 0)
+    }
+    companion object {
+        const val SEARCH_TEXT = "SEARCH_TEXT_KEY"
+        const val DEFAULT_TEXT = ""
     }
 }
