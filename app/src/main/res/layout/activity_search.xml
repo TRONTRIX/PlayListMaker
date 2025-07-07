@@ -34,7 +34,7 @@
         <EditText
             android:theme="@style/Theme.PlayListMakerTX"
             android:id="@+id/inputEditText"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="8dp"
@@ -57,7 +57,7 @@
             android:layout_gravity="center"
             android:src="@drawable/clear"
             android:layout_marginRight="11dp"
-            android:tint="?attr/colorAccent"
+            app:tint="?attr/colorAccent"
             android:visibility="gone"/>
     </LinearLayout>
 
