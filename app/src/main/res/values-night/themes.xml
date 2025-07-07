@@ -7,8 +7,9 @@
         <item name="colorOnPrimary">@color/white_YP</item>
         <item name="colorPrimaryContainer">@color/white_YP</item>
         <!-- Surface colors -->
-        <item name="colorSurface">@color/grey_text_YP</item>
+        <item name="colorSurface">@color/white_YP</item>
         <item name="colorOnSurface">@color/black_YP</item>
+        <item name="colorAccent">@color/black_YP</item>
         <!-- Background -->
         <item name="colorOnBackground">@color/blue_YP</item>
     </style>

@@ -10,6 +10,7 @@
         <!-- Surface colors -->
         <item name="colorSurface">@color/grey_text_YP</item>
         <item name="colorOnSurface">@color/black_YP</item>
+        <item name="colorAccent">@color/grey_text_YP</item>
         <!-- Background -->
         <item name="colorOnBackground">@color/blue_YP</item>
     </style>
