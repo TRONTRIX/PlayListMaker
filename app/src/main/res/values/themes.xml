@@ -1,9 +1,20 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.PlayListMakerTX" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Theme.PlayListMakerTX" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <!-- Primary colors -->
+        <item name="colorPrimary">@color/white_YP</item>
+        <item name="colorOnPrimary">@color/black_YP</item>
+        <item name="colorPrimaryContainer">@color/white_YP</item>
+        <item name="colorOnSecondary">@color/black_YP</item>
+        <item name="colorSecondary">@color/light_grey_YP</item>
+        <!-- Surface colors -->
+        <item name="colorSurface">@color/grey_text_YP</item>
+        <item name="colorOnSurface">@color/black_YP</item>
+        <item name="colorAccent">@color/grey_text_YP</item>
+        <!-- Background -->
+        <item name="colorOnBackground">@color/blue_YP</item>
     </style>
 
-    <style name="Theme.PlayListMakerTX" parent="Base.Theme.PlayListMakerTX" />
 </resources>
