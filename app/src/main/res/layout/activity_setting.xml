@@ -13,7 +13,7 @@
         android:theme="@style/Theme.PlayListMakerTX"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:navigationIcon="@drawable/arrow_back"
+        app:navigationIcon="@drawable/arrow_back_16dp"
         app:navigationIconTint="?attr/colorOnPrimary"
         app:title="@string/Setting"
         app:titleTextColor="?attr/colorOnPrimary"
@@ -42,7 +42,7 @@
             android:text="@string/Share" />
         <ImageButton
             style="@style/ImageButtonOnSettingActivity"
-            android:src="@drawable/share"/>
+            android:src="@drawable/share16x18dp"/>
     </FrameLayout>
 
     <FrameLayout
@@ -53,7 +53,7 @@
             android:text="@string/Support" />
         <ImageButton
             style="@style/ImageButtonOnSettingActivity"
-            android:src="@drawable/support" />
+            android:src="@drawable/support_24dp" />
     </FrameLayout>
 
     <FrameLayout
@@ -65,7 +65,7 @@
             android:text="@string/UserManual" />
         <ImageButton
             style="@style/ImageButtonOnSettingActivity"
-            android:src="@drawable/arrow_forward" />
+            android:src="@drawable/arrow_forward_24dp" />
     </FrameLayout>
 
 </LinearLayout>
