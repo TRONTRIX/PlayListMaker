@@ -20,14 +20,7 @@ import com.practicum.playlistmakertx.searchActivityRecyclerView.Track
 
 
 class SearchActivity : AppCompatActivity() {
-    companion object {
-        const val SEARCH_TEXT = "SEARCH_TEXT_KEY"
-        const val DEFAULT_TEXT = ""
-    }
-
     private var savedEditTextSearch: String = DEFAULT_TEXT
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -112,5 +105,8 @@ class SearchActivity : AppCompatActivity() {
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(editText.windowToken, 0)
     }
-
+    companion object {
+        private const val SEARCH_TEXT = "SEARCH_TEXT_KEY"
+        private const val DEFAULT_TEXT = ""
+    }
 }
