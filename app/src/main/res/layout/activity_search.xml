@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:theme="@style/Theme.PlayListMakerTX"
     android:layout_width="match_parent"
@@ -13,7 +14,7 @@
         android:theme="@style/Theme.PlayListMakerTX"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:navigationIcon="@drawable/arrow_back"
+        app:navigationIcon="@drawable/arrow_back_16dp"
         app:navigationIconTint="?attr/colorOnPrimary"
         app:title="@string/Search"
         app:titleTextColor="?attr/colorOnPrimary"
@@ -38,7 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:padding="8dp"
+            android:padding="@dimen/Mini_standart_padding_8dp"
             android:paddingLeft="3dp"
             android:background="?attr/colorSecondary"
             android:hint="@string/Search"
@@ -47,22 +48,29 @@
             android:maxLines="1"
             android:inputType="text"
             android:textColorHint="?attr/colorAccent"
-            android:drawableStart="@drawable/search"
+            android:drawableStart="@drawable/search_24dp"
             android:drawableTint="?attr/colorAccent"
             android:drawablePadding="8dp"/>
 
         <ImageView
             android:theme="@style/Theme.PlayListMakerTX"
             android:id="@+id/clearIcon"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:src="@drawable/clear"
+            android:src="@drawable/clear_16dp"
             android:layout_marginRight="11dp"
             app:tint="?attr/colorAccent"
             android:background="?attr/colorSecondary"
             />
     </LinearLayout>
-
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvListTrack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="vertical"
+        tools:listitem="@layout/music_card_in_search_activity"
+        tools:itemCount="10"/>
 
 </LinearLayout>

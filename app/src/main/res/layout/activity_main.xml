@@ -16,16 +16,16 @@
       style="@style/ButtonOnMainActivity"
       android:backgroundTint="@color/white"
       android:text="@string/Search"
-      app:icon="@drawable/search"/>
+      app:icon="@drawable/search_24dp"/>
   <Button
       android:id="@+id/library_button"
       style="@style/ButtonOnMainActivity"
       android:text="@string/Library"
-      app:icon="@drawable/library"/>
+      app:icon="@drawable/library_25x24dp"/>
   <Button
       android:id="@+id/setting_button"
       style="@style/ButtonOnMainActivity"
       android:text="@string/Setting"
-      app:icon="@drawable/setting"/>
+      app:icon="@drawable/setting_24dp"/>
 
 </LinearLayout>

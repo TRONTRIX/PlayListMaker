@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="Standart_text_size">22sp</dimen>
+    <dimen name="Mini_text_size_in_down_bar_musicCaard">11sp</dimen>
+    <dimen name="Text_size_in_RecyclerView_on_seacrActivity">16sp</dimen>
     <dimen name="standart_padding">16dp</dimen>
+    <dimen name="Mini_standart_padding_8dp">8dp</dimen>
+    <dimen name="Mini_standart_padding_6dp">6dp</dimen>
+    <dimen name="Mini_standart_padding_5dp">5dp</dimen>
 </resources>
