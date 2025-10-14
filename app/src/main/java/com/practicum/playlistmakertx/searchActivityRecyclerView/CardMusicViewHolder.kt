@@ -35,7 +35,7 @@ class CardMusicViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
             .into(imageTrack)
         nameTrack.text = item.trackName
         artistNameTrack.text = item.artistName
-        timeTrack.text = item.trackTime
+        timeTrack.text = item.getFormattedTime()
     }
 
     fun dpToPx(dp: Float, context: Context): Int {

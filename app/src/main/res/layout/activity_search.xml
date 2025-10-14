@@ -50,7 +50,9 @@
             android:textColorHint="?attr/colorAccent"
             android:drawableStart="@drawable/search_24dp"
             android:drawableTint="?attr/colorAccent"
-            android:drawablePadding="8dp"/>
+            android:drawablePadding="8dp"
+            android:imeOptions="actionDone"
+            android:singleLine="true"/>
 
         <ImageView
             android:theme="@style/Theme.PlayListMakerTX"
@@ -71,6 +73,73 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:orientation="vertical"
         tools:listitem="@layout/music_card_in_search_activity"
-        tools:itemCount="10"/>
+        tools:itemCount="10"
+        android:visibility="visible"/>
+    <LinearLayout
+        android:id="@+id/emptyState"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+        <ImageView
+            style="@style/searchImageOnSearchActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="102dp"/>
+        <TextView
+            style="@style/Theme.PlayListMakerTX"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/notFound"
+            android:layout_marginTop="@dimen/standart_padding"
+            android:layout_gravity="center"
+            android:fontFamily="@font/ys_display_medium"
+            android:textSize="@dimen/Standart_text_size"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/networkLostError"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+        <ImageView
+            style="@style/networkLostImageOnSearchActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="102dp"/>
+        <TextView
+            style="@style/Theme.PlayListMakerTX"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/networkProblem"
+            android:layout_marginTop="@dimen/standart_padding"
+            android:layout_gravity="center"
+            android:fontFamily="@font/ys_display_medium"
+            android:textSize="@dimen/Standart_text_size"/>
+        <TextView
+            style="@style/Theme.PlayListMakerTX"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/standart_padding"
+            android:text="@string/networkError"
+            android:fontFamily="@font/ys_display_medium"
+            android:gravity="center"
+            android:textSize="@dimen/Standart_text_size"/>
+
+    <Button
+        android:id="@+id/updateErrorButtonSearch"
+        android:theme="@style/Theme.PlayListMakerTX"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:backgroundTint="?attr/colorOnPrimary"
+        android:textColor="?attr/colorPrimary"
+        android:fontFamily="@font/ys_display_medium"
+        android:text="@string/update"
+        app:cornerRadius = "@dimen/standart_padding"
+        android:textAllCaps="false"/>
+    </LinearLayout>
 
 </LinearLayout>
