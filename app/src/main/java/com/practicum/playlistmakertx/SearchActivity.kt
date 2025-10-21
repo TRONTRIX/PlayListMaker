@@ -38,9 +38,9 @@ class SearchActivity : AppCompatActivity() {
     private lateinit var networkLostError: LinearLayout
     private lateinit var updateErrorButtonSearch: Button
 
-    private val baseUrl = "https://itunes.apple.com"
+
     private val retrofit = Retrofit.Builder()
-        .baseUrl(baseUrl)
+        .baseUrl(BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
     private val iTunseService = retrofit.create(ITunesSearchAPI::class.java)
@@ -156,26 +156,18 @@ class SearchActivity : AppCompatActivity() {
                     call: Call<TrackResponse?>,
                     response: Response<TrackResponse?>
                 ) {
-                    if (response.code() == 200) {
+                    if (response.isSuccessful) {
                         val tracks = response.body()?.results ?: emptyList()
                         cardMusicAdapter.listTrack = tracks
                         cardMusicAdapter.notifyDataSetChanged()
 
                         if (tracks.isEmpty()) {
-                            emptyState.visibility = View.VISIBLE
-                            networkLostError.visibility = View.GONE
-                            recyclerView.visibility = View.GONE
+                            emptyStateVisible()
                         } else {
-                            emptyState.visibility = View.GONE
-                            networkLostError.visibility = View.GONE
-                            recyclerView.visibility = View.VISIBLE
+                           recyclerViewVisible()
                         }
                     } else {
-                        emptyState.visibility = View.GONE
-                        networkLostError.visibility = View.VISIBLE
-                        recyclerView.visibility = View.GONE
-                        updateErrorButtonSearch.setOnClickListener {
-                            activitySearch(searchText)}
+                       networkLostErrorVisible(searchText)
                     }
                 }
 
@@ -183,19 +175,35 @@ class SearchActivity : AppCompatActivity() {
                     call: Call<TrackResponse?>,
                     t: Throwable
                 ) {
-                    emptyState.visibility = View.GONE
-                    networkLostError.visibility = View.VISIBLE
-                    recyclerView.visibility = View.GONE
-                    updateErrorButtonSearch.setOnClickListener {
-                        activitySearch(searchText)}
+                    networkLostErrorVisible(searchText)
                 }
 
             })
+    }
+    private fun  emptyStateVisible() {
+        emptyState.visibility = View.VISIBLE
+        networkLostError.visibility = View.GONE
+        recyclerView.visibility = View.GONE
+    }
+    private fun  recyclerViewVisible() {
+        emptyState.visibility = View.GONE
+        networkLostError.visibility = View.GONE
+        recyclerView.visibility = View.VISIBLE
+    }
+
+    private fun  networkLostErrorVisible(searchText: String) {
+        emptyState.visibility = View.GONE
+        networkLostError.visibility = View.VISIBLE
+        recyclerView.visibility = View.GONE
+        updateErrorButtonSearch.setOnClickListener {
+            activitySearch(searchText)}
     }
 
 
     companion object {
         private const val SEARCH_TEXT = "SEARCH_TEXT_KEY"
         private const val DEFAULT_TEXT = ""
+        private const val BASE_URL = "https://itunes.apple.com"
     }
 }
+
