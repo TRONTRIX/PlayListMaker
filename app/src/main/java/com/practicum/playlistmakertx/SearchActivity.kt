@@ -203,7 +203,7 @@ class SearchActivity : AppCompatActivity() {
     companion object {
         private const val SEARCH_TEXT = "SEARCH_TEXT_KEY"
         private const val DEFAULT_TEXT = ""
-        private const val BASE_URL = "https://itunes.apple.com"
+        private const val BASE_URL = "https://itunes.apple.com"//test
     }
 }
 
