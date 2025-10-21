@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.practicum.playlistmakertx.R
 
 class CardMusicAdapter(
-    private val listTrack: List<Track>
+    var listTrack: List<Track>
 ): RecyclerView.Adapter<CardMusicViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardMusicViewHolder {
         return CardMusicViewHolder(parent)

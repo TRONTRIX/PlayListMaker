@@ -47,4 +47,11 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:orientation">vertical</item>
     </style>
+    <style name="searchImageOnSearchActivity">
+        <item name="android:src">@drawable/not_found_light_120</item>
+    </style>
+    <style name="networkLostImageOnSearchActivity">
+        <item name="android:src">@drawable/not_internet_light_120</item>
+    </style>
+
 </resources>

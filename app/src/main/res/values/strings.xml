@@ -12,6 +12,10 @@
     <string name="textSupportEmail">Спасибо разработчикам и разработчицам за крутое приложение!</string>
     <string name="practicumOffer">https://yandex.ru/legal/practicum_offer/</string>
     <string name="developerEmail">"thedrof3cool@mail.ru"</string>
+    <string name="notFound">Ничего не нашлось</string>
+    <string name="networkProblem">Проблемы со связью</string>
+    <string name="networkError">Загрузка не удалась. Проверьте подключение к интернету</string>
+    <string name="update">Обновить</string>
 
 </resources>
 
