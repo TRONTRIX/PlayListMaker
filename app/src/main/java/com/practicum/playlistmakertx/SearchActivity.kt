@@ -164,10 +164,10 @@ class SearchActivity : AppCompatActivity() {
                         if (tracks.isEmpty()) {
                             emptyStateVisible()
                         } else {
-                           recyclerViewVisible()
+                            recyclerViewVisible()
                         }
                     } else {
-                       networkLostErrorVisible(searchText)
+                        networkLostErrorVisible(searchText)
                     }
                 }
 
@@ -180,23 +180,26 @@ class SearchActivity : AppCompatActivity() {
 
             })
     }
-    private fun  emptyStateVisible() {
+
+    private fun emptyStateVisible() {
         emptyState.visibility = View.VISIBLE
         networkLostError.visibility = View.GONE
         recyclerView.visibility = View.GONE
     }
-    private fun  recyclerViewVisible() {
+
+    private fun recyclerViewVisible() {
         emptyState.visibility = View.GONE
         networkLostError.visibility = View.GONE
         recyclerView.visibility = View.VISIBLE
     }
 
-    private fun  networkLostErrorVisible(searchText: String) {
+    private fun networkLostErrorVisible(searchText: String) {
         emptyState.visibility = View.GONE
         networkLostError.visibility = View.VISIBLE
         recyclerView.visibility = View.GONE
         updateErrorButtonSearch.setOnClickListener {
-            activitySearch(searchText)}
+            activitySearch(searchText)
+        }
     }
 
 
