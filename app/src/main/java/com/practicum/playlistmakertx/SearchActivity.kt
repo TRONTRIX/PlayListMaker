@@ -242,7 +242,7 @@ class SearchActivity : AppCompatActivity() {
         val isEmpty = inputEditText.text.isNullOrEmpty()
         val history = searchHistory.getHisory()
 
-        if (isEmpty && history.isNotEmpty()) { // тут можно добавить hasFocus
+        if (hasFocus && isEmpty && history.isNotEmpty()) { // тут можно добавить hasFocus
             showHistory(history)
         } else {
             hideHistory()
@@ -255,7 +255,7 @@ class SearchActivity : AppCompatActivity() {
         emptyState.visibility = View.GONE
         networkLostError.visibility = View.GONE
 
-        // Обновляем данные в адаптере истории
+
         historyCardMusicAdapter.listTrack = history
         historyCardMusicAdapter.notifyDataSetChanged()
     }
