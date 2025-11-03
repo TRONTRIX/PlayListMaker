@@ -242,7 +242,7 @@ class SearchActivity : AppCompatActivity() {
         val isEmpty = inputEditText.text.isNullOrEmpty()
         val history = searchHistory.getHisory()
 
-        if (hasFocus && isEmpty && history.isNotEmpty()) { // тут можно добавить hasFocus
+        if (hasFocus && isEmpty && history.isNotEmpty()) { // тут можно добавить hasFocus !
             showHistory(history)
         } else {
             hideHistory()
