@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.switchmaterial.SwitchMaterial
 
 class SettingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,6 +46,15 @@ class SettingActivity : AppCompatActivity() {
             intent.setType("text/plain")
             intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.UrlAndroidDeveloper))
             startActivity(intent)
+        }
+
+        val themeSwitcher = findViewById<SwitchMaterial>(R.id.themeSwitcher)
+
+        val app = application as App
+        themeSwitcher.isChecked = app.darkTheme
+
+        themeSwitcher.setOnCheckedChangeListener { switcher, checked ->
+            (applicationContext as App).switchTheme(checked)
         }
 
 
