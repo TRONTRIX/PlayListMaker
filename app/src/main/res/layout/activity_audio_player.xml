@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/Theme.PlayListMakerTX"
+    android:background="?attr/colorPrimary"
+    android:fillViewport="true">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/tool_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/ys_display_medium"
+            android:theme="@style/Theme.PlayListMakerTX"
+            app:navigationIcon="@drawable/arrow_back_16dp"
+            app:navigationIconTint="?attr/colorOnPrimary"
+            app:titleTextColor="?attr/colorOnPrimary"
+            tools:ignore="MissingConstraints" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/leftBorder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="24dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/rightBorder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="24dp" />
+
+        <ImageView
+            android:id="@+id/image_track"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            android:background="@drawable/rounder_image_on_player"
+            app:layout_constraintDimensionRatio="h,1:1"
+            app:layout_constraintEnd_toStartOf="@+id/rightBorder"
+            app:layout_constraintStart_toEndOf="@id/leftBorder"
+            app:layout_constraintTop_toBottomOf="@+id/tool_bar"
+            app:srcCompat="@drawable/placeholder_45dp"/>
+
+        <TextView
+            android:id="@+id/name_track"
+            style="@style/Theme.PlayListMakerTX"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/ys_display_medium"
+            android:maxLines="1"
+            android:textSize="22sp"
+            app:layout_constraintStart_toEndOf="@id/leftBorder"
+            app:layout_constraintTop_toBottomOf="@+id/image_track"
+            tools:text="Yeserday (Remaster 2009)" />
+
+        <TextView
+            android:id="@+id/artist_name_track"
+            style="@style/Theme.PlayListMakerTX"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/ys_display_medium"
+            android:maxLines="1"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@id/leftBorder"
+            app:layout_constraintTop_toBottomOf="@+id/name_track"
+            tools:text="The Beatles" />
+
+        <ImageButton
+            android:id="@+id/button"
+            android:layout_width="51dp"
+            android:layout_height="51dp"
+            app:layout_constraintBottom_toBottomOf="@id/button2"
+            app:layout_constraintEnd_toStartOf="@+id/button2"
+            android:background="@drawable/round_background_for_audio_player"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="@id/leftBorder"
+            app:layout_constraintTop_toTopOf="@id/button2"
+            app:srcCompat="@drawable/playlist_button_23dp"/>
+
+        <ImageButton
+            android:id="@+id/button2"
+            android:theme="@style/Theme.PlayListMakerTX"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="37dp"
+            android:background="@null"
+            app:tint="?attr/colorOnPrimary"
+            app:layout_constraintEnd_toStartOf="@+id/button3"
+            app:layout_constraintStart_toEndOf="@+id/button"
+            app:layout_constraintTop_toBottomOf="@id/artist_name_track"
+            app:srcCompat="@drawable/play_button_84dp" />
+
+        <ImageButton
+            android:id="@+id/button3"
+            android:layout_width="51dp"
+            android:layout_height="51dp"
+            android:background="@drawable/round_background_for_audio_player"
+            app:layout_constraintBottom_toBottomOf="@+id/button"
+            app:layout_constraintEnd_toEndOf="@id/rightBorder"
+            app:layout_constraintStart_toEndOf="@+id/button2"
+            app:srcCompat="@drawable/liked_button_23dp" />
+        <TextView
+            android:id="@+id/trial_time"
+            style="@style/Theme.PlayListMakerTX"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:lines="1"
+            android:text="0:30"
+            android:textSize="14sp"
+            android:fontFamily="@font/ys_display_medium"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintTop_toBottomOf="@id/button2"
+            app:layout_constraintEnd_toEndOf="@+id/rightBorder"
+            app:layout_constraintStart_toStartOf="@+id/leftBorder" />
+
+        <TextView
+            android:id="@+id/constContry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Страна"
+            style="@style/Theme.PlayListMakerTX"
+            android:textSize="13sp"
+            android:fontFamily="@font/ys_display_regular"
+            android:textColor="@color/grey_text_YP"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="@+id/leftBorder"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/constPrimaryGenreName"/>
+        <TextView
+            android:id="@+id/constPrimaryGenreName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Жанр"
+            style="@style/Theme.PlayListMakerTX"
+            android:textSize="13sp"
+            android:fontFamily="@font/ys_display_regular"
+            android:textColor="@color/grey_text_YP"
+            app:layout_constraintTop_toBottomOf="@id/constYearRealese"
+            app:layout_constraintStart_toStartOf="@+id/leftBorder"
+            app:layout_constraintBottom_toTopOf="@id/constContry"/>
+        <TextView
+            android:id="@+id/constYearRealese"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Год"
+            style="@style/Theme.PlayListMakerTX"
+            android:textSize="13sp"
+            android:fontFamily="@font/ys_display_regular"
+            android:textColor="@color/grey_text_YP"
+            app:layout_constraintTop_toBottomOf="@id/constAlbum"
+            app:layout_constraintStart_toStartOf="@+id/leftBorder"
+            app:layout_constraintBottom_toTopOf="@id/constPrimaryGenreName"/>
+        <TextView
+            android:id="@+id/constAlbum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Альбом"
+            style="@style/Theme.PlayListMakerTX"
+            android:textSize="13sp"
+            android:fontFamily="@font/ys_display_regular"
+            android:textColor="@color/grey_text_YP"
+            app:layout_constraintTop_toBottomOf="@id/constTimeTrack"
+            app:layout_constraintStart_toStartOf="@+id/leftBorder"
+            app:layout_constraintBottom_toTopOf="@id/constYearRealese"/>
+        <TextView
+            android:id="@+id/constTimeTrack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Длительность"
+            style="@style/Theme.PlayListMakerTX"
+            android:textSize="13sp"
+            android:fontFamily="@font/ys_display_regular"
+            android:textColor="@color/grey_text_YP"
+            android:layout_marginTop="30dp"
+            app:layout_constraintTop_toBottomOf="@id/trial_time"
+            app:layout_constraintStart_toStartOf="@+id/leftBorder"
+            app:layout_constraintBottom_toTopOf="@id/constAlbum"/>
+
+
+        <TextView
+            android:id="@+id/contry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Страна"
+            style="@style/Theme.PlayListMakerTX"
+            android:textSize="13sp"
+            android:fontFamily="@font/ys_display_regular"
+            android:textColor="?attr/colorOnPrimary"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintEnd_toStartOf="@+id/rightBorder"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/constPrimaryGenreName"/>
+        <TextView
+            android:id="@+id/primaryGenreName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Жанр"
+            style="@style/Theme.PlayListMakerTX"
+            android:textSize="13sp"
+            android:fontFamily="@font/ys_display_regular"
+            android:textColor="?attr/colorOnPrimary"
+            app:layout_constraintTop_toBottomOf="@id/constYearRealese"
+            app:layout_constraintEnd_toStartOf="@+id/rightBorder"
+            app:layout_constraintBottom_toTopOf="@id/constContry"/>
+        <TextView
+            android:id="@+id/yearRealese"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            style="@style/Theme.PlayListMakerTX"
+            android:textSize="13sp"
+            android:fontFamily="@font/ys_display_regular"
+            android:textColor="?attr/colorOnPrimary"
+            app:layout_constraintTop_toBottomOf="@id/constAlbum"
+            app:layout_constraintEnd_toStartOf="@+id/rightBorder"
+            app:layout_constraintBottom_toTopOf="@id/constPrimaryGenreName"/>
+        <TextView
+            android:id="@+id/album"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            style="@style/Theme.PlayListMakerTX"
+            android:textSize="13sp"
+            android:fontFamily="@font/ys_display_regular"
+            android:textColor="?attr/colorOnPrimary"
+            app:layout_constraintTop_toBottomOf="@id/constTimeTrack"
+            app:layout_constraintEnd_toStartOf="@+id/rightBorder"
+            app:layout_constraintBottom_toTopOf="@id/constYearRealese"/>
+        <TextView
+            android:id="@+id/timeTrack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Длительность"
+            style="@style/Theme.PlayListMakerTX"
+            android:textSize="13sp"
+            android:maxLines="1"
+            android:fontFamily="@font/ys_display_regular"
+            android:textColor="?attr/colorOnPrimary"
+            android:layout_marginTop="30dp"
+            app:layout_constraintTop_toBottomOf="@id/trial_time"
+            app:layout_constraintEnd_toStartOf="@+id/rightBorder"
+            app:layout_constraintBottom_toTopOf="@id/constAlbum"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

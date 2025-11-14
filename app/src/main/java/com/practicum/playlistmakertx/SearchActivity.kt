@@ -151,8 +151,6 @@ class SearchActivity : AppCompatActivity() {
         clearHistoryButton = findViewById(R.id.cleerHistotyButtonSearch)
         historyLinear = findViewById(R.id.linearHistory)
 
-
-
         cardMusicAdapter = CardMusicAdapter(emptyList())
         historyCardMusicAdapter = CardMusicAdapter(emptyList())
         recyclerViewHistory.adapter = historyCardMusicAdapter
