@@ -9,6 +9,7 @@ import com.practicum.playlistmakertx.AudioPlayerActivity
 import com.practicum.playlistmakertx.LibraryActivity
 import com.practicum.playlistmakertx.R
 import com.practicum.playlistmakertx.SettingActivity
+import kotlinx.coroutines.delay
 
 class CardMusicAdapter(
     var listTrack: List<Track>
@@ -30,8 +31,8 @@ class CardMusicAdapter(
             val playerIntent = Intent(holder.itemView.context, AudioPlayerActivity::class.java)
             playerIntent.putExtra("track_from_Adapter", listTrack[position])
             holder.itemView.context.startActivity(playerIntent)
-
-            onTrackClick?.let { it1 -> it1(listTrack[position]) }
+            onTrackClick?.let { it1 ->
+                it1(listTrack[position]) }
         }
     }
     override fun getItemCount(): Int {
