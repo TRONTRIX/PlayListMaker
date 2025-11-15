@@ -65,7 +65,7 @@
             app:layout_constraintEnd_toStartOf="@id/rightBorder"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintTop_toBottomOf="@+id/image_track"
-            tools:text="Yeserday (Remaster 2009) hbhbbhbh" />
+            tools:text="Yeserday (Remaster 2009)" />
 
         <TextView
             android:id="@+id/artist_name_track"
@@ -239,7 +239,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text=""
-            android:maxLines="1"
+            android:maxLines="2"
             app:layout_constraintHorizontal_bias="0.5"
             android:ellipsize="end"
             android:gravity="end"
