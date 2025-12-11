@@ -20,7 +20,6 @@ class SearchHistory(private val sharedPreferences: SharedPreferences) {
         } catch (e: Exception){
             emptyList()
         }
-
     }
 
     fun addTrack(track: Track) {
