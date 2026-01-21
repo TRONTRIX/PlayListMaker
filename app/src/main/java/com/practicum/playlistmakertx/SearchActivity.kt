@@ -2,6 +2,8 @@ package com.practicum.playlistmakertx
 
 import android.content.Context
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
@@ -11,6 +13,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.ProgressBar
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -32,6 +35,8 @@ import retrofit2.create
 
 class SearchActivity : AppCompatActivity() {
     private var savedEditTextSearch: String = DEFAULT_TEXT
+    private val handler = Handler(Looper.getMainLooper())
+    private val searchMusicRunnable = Runnable { activitySearch() }
 
     private lateinit var cardMusicAdapter: CardMusicAdapter
     private lateinit var recyclerView: RecyclerView
@@ -41,8 +46,10 @@ class SearchActivity : AppCompatActivity() {
     private lateinit var recyclerViewHistory: RecyclerView
     private lateinit var historyCardMusicAdapter: CardMusicAdapter
     private lateinit var clearHistoryButton: Button
+    private lateinit var progressBar: ProgressBar
     private lateinit var searchHistory: SearchHistory
     private lateinit var historyLinear: LinearLayout
+    private lateinit var inputEditText: EditText
 
 
     private val retrofit =
@@ -93,6 +100,7 @@ class SearchActivity : AppCompatActivity() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 savedEditTextSearch = s.toString() ?: ""
                 clearButton.visibility = clearButtonVisibility(s)
+                searchDebounce()
             }
 
             override fun afterTextChanged(s: Editable?) {
@@ -107,7 +115,7 @@ class SearchActivity : AppCompatActivity() {
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 val searchText = inputEditText.text.toString().trim()
                 if (searchText.isNotEmpty()) {
-                    activitySearch(searchText)
+                    activitySearch()
                     hideKeyboard(inputEditText)
                 } else {
                     cardMusicAdapter.listTrack = emptyList()
@@ -150,7 +158,9 @@ class SearchActivity : AppCompatActivity() {
         updateErrorButtonSearch = findViewById(R.id.updateErrorButtonSearch)
         recyclerViewHistory = findViewById(R.id.rvListTrackHistory)
         clearHistoryButton = findViewById(R.id.cleerHistotyButtonSearch)
+        progressBar = findViewById(R.id.progressBar)
         historyLinear = findViewById(R.id.linearHistory)
+        inputEditText = findViewById(R.id.inputEditText)
 
         cardMusicAdapter = CardMusicAdapter(emptyList())
         historyCardMusicAdapter = CardMusicAdapter(emptyList())
@@ -185,11 +195,14 @@ class SearchActivity : AppCompatActivity() {
         imm.hideSoftInputFromWindow(editText.windowToken, 0)
     }
 
-    private fun activitySearch(searchText: String) {
-        iTunseService.search(searchText).enqueue(object : Callback<TrackResponse> {
+    private fun activitySearch() {
+        progressBar.visibility = View.VISIBLE
+        iTunseService.search(inputEditText.text.toString())
+            .enqueue(object : Callback<TrackResponse> {
                 override fun onResponse(
                     call: Call<TrackResponse?>, response: Response<TrackResponse?>
                 ) {
+
                     if (response.isSuccessful) {
                         val tracks = response.body()?.results ?: emptyList()
                         cardMusicAdapter.listTrack = tracks
@@ -197,18 +210,21 @@ class SearchActivity : AppCompatActivity() {
 
                         if (tracks.isEmpty()) {
                             emptyStateVisible()
+
                         } else {
                             recyclerViewVisible()
+
                         }
                     } else {
-                        networkLostErrorVisible(searchText)
+                        networkLostErrorVisible(inputEditText.text.toString())
+
                     }
                 }
 
                 override fun onFailure(
                     call: Call<TrackResponse?>, t: Throwable
                 ) {
-                    networkLostErrorVisible(searchText)
+                    networkLostErrorVisible(inputEditText.text.toString())
                 }
 
             })
@@ -218,20 +234,23 @@ class SearchActivity : AppCompatActivity() {
         emptyState.visibility = View.VISIBLE
         networkLostError.visibility = View.GONE
         recyclerView.visibility = View.GONE
+        progressBar.visibility = View.GONE
     }
 
     private fun recyclerViewVisible() {
         emptyState.visibility = View.GONE
         networkLostError.visibility = View.GONE
         recyclerView.visibility = View.VISIBLE
+        progressBar.visibility = View.GONE
     }
 
     private fun networkLostErrorVisible(searchText: String) {
         emptyState.visibility = View.GONE
         networkLostError.visibility = View.VISIBLE
         recyclerView.visibility = View.GONE
+        progressBar.visibility = View.GONE
         updateErrorButtonSearch.setOnClickListener {
-            activitySearch(searchText)
+            activitySearch()
         }
     }
 
@@ -252,6 +271,7 @@ class SearchActivity : AppCompatActivity() {
         historyLinear.visibility = View.VISIBLE
         recyclerView.visibility = View.GONE
         emptyState.visibility = View.GONE
+        searchDebounce()
         networkLostError.visibility = View.GONE
 
 
@@ -263,12 +283,24 @@ class SearchActivity : AppCompatActivity() {
         historyLinear.visibility = View.GONE
     }
 
+    private fun searchDebounce() {
+        if (inputEditText.text.isNotEmpty()) {
+            handler.removeCallbacks(searchMusicRunnable)
+            handler.postDelayed(searchMusicRunnable, SEARCH_DEBOUNCE_DELAY)
+            recyclerView.visibility = View.GONE
+            emptyState.visibility = View.GONE
+            networkLostError.visibility = View.GONE
+
+        }
+    }
+
 
     companion object {
         private const val SEARCH_TEXT = "SEARCH_TEXT_KEY"
         private const val DEFAULT_TEXT = ""
         private const val HISTORY_SEARCH_PREFERENCES = "History_search"
         private const val BASE_URL = "https://itunes.apple.com"//test
+        private const val SEARCH_DEBOUNCE_DELAY = 2000L
     }
 }
 
