@@ -1,18 +1,16 @@
-package com.practicum.playlistmakertx.searchActivityRecyclerView
+package com.practicum.playlistmakertx.ui.searchActivity
 
 import android.content.Context
 import android.util.TypedValue
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.practicum.playlistmakertx.R
-import com.practicum.playlistmakertx.searchActivityRecyclerView.Track
+import com.practicum.playlistmakertx.domain.models.Track
 
 
 class CardMusicViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(

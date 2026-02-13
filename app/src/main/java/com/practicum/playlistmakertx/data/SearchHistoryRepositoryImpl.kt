@@ -1,15 +1,17 @@
-package com.practicum.playlistmakertx
+package com.practicum.playlistmakertx.data
 
 import android.content.SharedPreferences
 import com.google.gson.Gson
-import com.practicum.playlistmakertx.searchActivityRecyclerView.Track
+import com.practicum.playlistmakertx.domain.api.SearchHistoryRepository
+import com.practicum.playlistmakertx.domain.models.Track
 
-class SearchHistory(private val sharedPreferences: SharedPreferences) {
+class SearchHistoryRepositoryImpl(
+    private val sharedPreferences: SharedPreferences): SearchHistoryRepository {
     private val gson = Gson()
     private val key = "search_history"
     private val maxSize = 10
 
-    fun getHisory(): List<Track> {
+    override fun getHistory(): List<Track> {
         val jsonString = sharedPreferences.getString(key, null)
         if (jsonString == null) {
             return emptyList()
@@ -22,8 +24,8 @@ class SearchHistory(private val sharedPreferences: SharedPreferences) {
         }
     }
 
-    fun addTrack(track: Track) {
-        val history = getHisory().toMutableList()
+    override fun saveTrack(track: Track) {
+        val history = getHistory().toMutableList()
         history.removeAll { it.trackId == track.trackId }
         history.add(0, track)
         if (history.size > maxSize){
@@ -37,7 +39,7 @@ class SearchHistory(private val sharedPreferences: SharedPreferences) {
 
     }
 
-    fun clearHistory() {
+    override fun clear() {
         sharedPreferences.edit()
             .remove(key)
             .apply()
