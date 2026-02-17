@@ -115,6 +115,7 @@ class SearchActivity : AppCompatActivity() {
 
         inputEditText.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
+                handler.removeCallbacks(searchMusicRunnable)
                 val searchText = inputEditText.text.toString().trim()
                 if (searchText.isNotEmpty()) {
                     activitySearch()
@@ -191,8 +192,10 @@ class SearchActivity : AppCompatActivity() {
 
     private fun clearButtonVisibility(s: CharSequence?): Int {
         return if (s.isNullOrEmpty()) {
+            progressBar.visibility = View.GONE
             View.GONE
         } else {
+            progressBar.visibility = View.GONE
             View.VISIBLE
         }
     }
@@ -287,6 +290,7 @@ class SearchActivity : AppCompatActivity() {
         progressBar.visibility = View.GONE
         updateErrorButtonSearch.setOnClickListener {
             activitySearch()
+            networkLostError.visibility = View.GONE
         }
     }
 
@@ -296,7 +300,7 @@ class SearchActivity : AppCompatActivity() {
         val isEmpty = inputEditText.text.isNullOrEmpty()
         val history = searchHistotyInteractor.getHistory()//searchHistory.getHisory()
 
-        if (hasFocus && isEmpty && history.isNotEmpty()) { // тут можно добавить hasFocus !
+        if (hasFocus && isEmpty && history.isNotEmpty()) {
             showHistory(history)
         } else {
             hideHistory()
@@ -320,14 +324,18 @@ class SearchActivity : AppCompatActivity() {
     }
 
     private fun searchDebounce() {
-        if (inputEditText.text.isNotEmpty() && cardMusicAdapter.listTrack.isNotEmpty()) {
-            handler.removeCallbacks(searchMusicRunnable)
+        handler.removeCallbacks(searchMusicRunnable)
+        if (inputEditText.text.isNotEmpty() /*&& cardMusicAdapter.listTrack.isEmpty()*/) {
             handler.postDelayed(searchMusicRunnable, SEARCH_DEBOUNCE_DELAY)
             recyclerView.visibility = View.GONE
             emptyState.visibility = View.GONE
             networkLostError.visibility = View.GONE
             historyLinear.visibility = View.GONE
+            progressBar.visibility = View.GONE
+        } else {
+            updateHistoryVisibility()
         }
+
     }
 
 
