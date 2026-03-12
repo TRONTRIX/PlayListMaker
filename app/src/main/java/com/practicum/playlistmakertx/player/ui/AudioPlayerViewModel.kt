@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.practicum.playlistmakertx.creator.Creator
 import com.practicum.playlistmakertx.player.data.AudioPlayerListner
 import com.practicum.playlistmakertx.player.domain.api.AudioPlayerInteractor
+import com.practicum.playlistmakertx.player.presentation.AudioPlayerState
 import com.practicum.playlistmakertx.player.presentation.PlaybackState
 import com.practicum.playlistmakertx.search.domain.models.Track
 
@@ -15,16 +16,11 @@ class AudioPlayerViewModel(
 
     private val interactor: AudioPlayerInteractor = Creator.provideAudioPlayerInteractor(this)
 
-    // Состояние воспроизведения
-    private val playbackStateLiveData = MutableLiveData<PlaybackState>()
-    fun observePlaybackState(): LiveData<PlaybackState> = playbackStateLiveData
-
-    // Текст таймера
-    private val timerTextLiveData = MutableLiveData<String>()
-    fun observeTimerText(): LiveData<String> = timerTextLiveData
+    private val stateLiveData = MutableLiveData<AudioPlayerState>()
+    fun observeState(): LiveData<AudioPlayerState> = stateLiveData
 
     init {
-        playbackStateLiveData.value = PlaybackState.PREPARING
+        stateLiveData.value = AudioPlayerState(PlaybackState.PREPARING, "0:30")
         interactor.preparePlayer(track.previewUrl)
     }
 
@@ -33,20 +29,22 @@ class AudioPlayerViewModel(
     }
 
     override fun onStateChanged(isPlaying: Boolean) {
-        playbackStateLiveData.value = if (isPlaying) PlaybackState.PLAYING else PlaybackState.PAUSED
-    }
+        val currentState = stateLiveData.value ?: return
+        val newPlaybackState = if (isPlaying) PlaybackState.PLAYING else PlaybackState.PAUSED
+        stateLiveData.value = currentState.copy(playbackState = newPlaybackState)}
 
     override fun onTimerUpdated(timeText: String) {
-        timerTextLiveData.value = timeText
+        val currentState = stateLiveData.value ?: return
+        stateLiveData.value = currentState.copy(timerText = timeText)
     }
 
     override fun onTrackEnded() {
-        playbackStateLiveData.value = PlaybackState.PREPARED
-        timerTextLiveData.value = "0:30"
+        stateLiveData.value = AudioPlayerState(PlaybackState.PREPARED, "0:30")
     }
 
     fun pauseIfPlaying() {
-        if (playbackStateLiveData.value == PlaybackState.PLAYING) {
+        val currentState = stateLiveData.value
+        if (currentState?.playbackState == PlaybackState.PLAYING) {
             interactor.playbackControl()
         }
     }

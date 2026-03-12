@@ -70,22 +70,21 @@ class AudioPlayerActivity : AppCompatActivity() {
                 finish()
                 return
             }
-        viewModel = ViewModelProvider(this, AudioPlayerViewModelFactory(track))[AudioPlayerViewModel::class.java]
+        viewModel = ViewModelProvider(
+            this,
+            AudioPlayerViewModelFactory(track)
+        )[AudioPlayerViewModel::class.java]
     }
 
     private fun observeViewModel() {
-
-
-        viewModel.observePlaybackState().observe(this) { state ->
-            when (state) {
-                PlaybackState.PLAYING -> playButton.setImageResource(R.drawable.pausebutton_84dp)
-                PlaybackState.PAUSED, PlaybackState.PREPARED -> playButton.setImageResource(R.drawable.play_button_84dp)
-                PlaybackState.PREPARING -> playButton.setImageResource(R.drawable.play_button_84dp)
+        viewModel.observeState().observe(this) { state ->
+            val icon = when (state.playbackState) {
+                PlaybackState.PLAYING -> R.drawable.pausebutton_84dp
+                else -> R.drawable.play_button_84dp
             }
-        }
+            playButton.setImageResource(icon)
 
-        viewModel.observeTimerText().observe(this) { time ->
-            timerText.text = time
+            timerText.text = state.timerText
         }
     }
 
@@ -113,7 +112,6 @@ class AudioPlayerActivity : AppCompatActivity() {
         super.onPause()
         viewModel.pauseIfPlaying()
     }
-
 
 
     private fun dpToPx(dp: Float, context: Context): Int {

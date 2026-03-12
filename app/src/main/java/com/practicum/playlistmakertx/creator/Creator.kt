@@ -8,7 +8,7 @@ import com.practicum.playlistmakertx.player.domain.api.AudioPlayerInteractor
 import com.practicum.playlistmakertx.player.domain.impl.AudioPlayerInteractorImpl
 import com.practicum.playlistmakertx.search.data.SearchHistoryRepositoryImpl
 import com.practicum.playlistmakertx.settings.data.ThemeRepositoryImpl
-import com.practicum.playlistmakertx.search.domain.impl.TrackRepositoryImpl
+import com.practicum.playlistmakertx.search.data.TrackRepositoryImpl
 import com.practicum.playlistmakertx.search.data.network.RetrofitSearchNetworkClient
 import com.practicum.playlistmakertx.search.domain.api.SearchHistoryRepository
 import com.practicum.playlistmakertx.search.domain.api.SearchHistotyInteractor

@@ -1,10 +1,9 @@
-package com.practicum.playlistmakertx.search.domain.impl
+package com.practicum.playlistmakertx.search.data
 
 import com.practicum.playlistmakertx.search.data.dto.TrackResponse
 import com.practicum.playlistmakertx.search.data.dto.TrackSearchRequest
 import com.practicum.playlistmakertx.search.domain.api.TrackRepository
 import com.practicum.playlistmakertx.search.domain.models.Track
-import com.practicum.playlistmakertx.search.data.NetworkClient
 
 class TrackRepositoryImpl(private val networkClient: NetworkClient) : TrackRepository {
     var checkError: Int = 400
