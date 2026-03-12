@@ -1,18 +1,20 @@
-package com.practicum.playlistmakertx
+package com.practicum.playlistmakertx.ui.settingActivity
 
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.widget.FrameLayout
-import android.widget.ImageButton
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.switchmaterial.SwitchMaterial
+import com.practicum.playlistmakertx.Creator
+import com.practicum.playlistmakertx.R
 
 class SettingActivity : AppCompatActivity() {
+    private val themeInteractor = Creator.provideThemeInteractor()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -50,11 +52,11 @@ class SettingActivity : AppCompatActivity() {
 
         val themeSwitcher = findViewById<SwitchMaterial>(R.id.themeSwitcher)
 
-        val app = application as App
-        themeSwitcher.isChecked = app.darkTheme
+
+        themeSwitcher.isChecked = themeInteractor.isDarkTheme()
 
         themeSwitcher.setOnCheckedChangeListener { switcher, checked ->
-            (applicationContext as App).switchTheme(checked)
+            themeInteractor.setDarkTheme(checked)
         }
 
 

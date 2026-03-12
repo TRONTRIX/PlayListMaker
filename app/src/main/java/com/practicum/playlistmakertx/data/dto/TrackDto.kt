@@ -1,14 +1,14 @@
-package com.practicum.playlistmakertx.searchActivityRecyclerView
+package com.practicum.playlistmakertx.domain.models
 
 import java.io.Serializable
 import java.text.SimpleDateFormat
 import java.util.Locale
 
-data class Track(
-    val trackName: String, // Название композиции
-    val artistName: String, // Имя исполнителя
-    val trackTimeMillis: Long, // Продолжительность трека
-    val artworkUrl100: String,// Ссылка на изображение обложки
+data class TrackDto(
+    val trackName: String,
+    val artistName: String,
+    val trackTimeMillis: Long,
+    val artworkUrl100: String,
     val trackId: Long,
     val collectionName: String?,
     val releaseDate: String?,
