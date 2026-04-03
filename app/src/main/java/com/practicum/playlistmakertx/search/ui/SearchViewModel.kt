@@ -63,7 +63,7 @@ class SearchViewModel(
 
     fun onClearHistoryClick() {
         historyInteractor.clearHistory()
-        updateHistory()
+        updateHistory() // теперь updateHistory сама скроет историю, если она пуста
     }
 
     fun onRetryClick() {
@@ -115,6 +115,11 @@ class SearchViewModel(
         val history = historyInteractor.getHistory()
         if (history.isNotEmpty() && latestSearchText.isEmpty() && hasFocus) {
             stateLiveData.value = SearchState.History(history)
+        } else {
+            // Если история пуста или условия не выполнены, скрываем историю
+            if (stateLiveData.value is SearchState.History) {
+                stateLiveData.value = SearchState.Idle
+            }
         }
     }
 
@@ -136,5 +141,8 @@ class SearchViewModel(
     override fun onCleared() {
         super.onCleared()
         handler.removeCallbacksAndMessages(SEARCH_REQUEST_TOKEN)
+    }
+    fun restoreText(text: String) {
+        latestSearchText = text
     }
 }

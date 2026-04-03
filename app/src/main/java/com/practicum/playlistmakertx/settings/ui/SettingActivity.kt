@@ -10,14 +10,15 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.switchmaterial.SwitchMaterial
-import com.practicum.playlistmakertx.creator.Creator
+
 import com.practicum.playlistmakertx.R
 import androidx.core.net.toUri
 import androidx.lifecycle.ViewModelProvider
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SettingActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: SettingViewModel
+    private val viewModel: SettingViewModel by viewModel()
     private lateinit var themeSwitcher: SwitchMaterial
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,7 +28,7 @@ class SettingActivity : AppCompatActivity() {
 
         initViews()
         setupToolbar()
-        setupViewModel()
+
         observeViewModel()
         setupListeners()
 
@@ -49,21 +50,20 @@ class SettingActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupViewModel() {
-        viewModel = ViewModelProvider(this, SettingViewModelFactory())[SettingViewModel::class.java]
-    }
+
 
     private fun observeViewModel() {
         viewModel.observeThemeState().observe(this) { isDark ->
-            themeSwitcher.setOnCheckedChangeListener(null)
-            themeSwitcher.isChecked = isDark
-            themeSwitcher.setOnCheckedChangeListener { _, checked ->
-                viewModel.onThemeToggled(checked)
+            if (themeSwitcher.isChecked != isDark) {
+                themeSwitcher.isChecked = isDark
             }
         }
     }
 
     private fun setupListeners() {
+        themeSwitcher.setOnCheckedChangeListener { _, checked ->
+            viewModel.onThemeToggled(checked)
+        }
         val userSettingButtonActivity = findViewById<FrameLayout>(R.id.user_agreement)
         userSettingButtonActivity.setOnClickListener {
             val url = Uri.parse(getString(R.string.practicumOffer))

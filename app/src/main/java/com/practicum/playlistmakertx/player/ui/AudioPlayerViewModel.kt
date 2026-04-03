@@ -3,19 +3,24 @@ package com.practicum.playlistmakertx.player.ui
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.practicum.playlistmakertx.creator.Creator
+
 import com.practicum.playlistmakertx.player.data.AudioPlayerListner
 import com.practicum.playlistmakertx.player.domain.api.AudioPlayerInteractor
 import com.practicum.playlistmakertx.player.presentation.AudioPlayerState
 import com.practicum.playlistmakertx.player.presentation.PlaybackState
 import com.practicum.playlistmakertx.search.domain.models.Track
+import org.koin.core.parameter.parametersOf
+import org.koin.java.KoinJavaComponent.getKoin
+import org.koin.java.KoinJavaComponent.inject
+
 
 class AudioPlayerViewModel(
     private val track: Track
 ) : ViewModel(), AudioPlayerListner {
 
-    private val interactor: AudioPlayerInteractor = Creator.provideAudioPlayerInteractor(this)
-
+    private val interactor: AudioPlayerInteractor by lazy {
+        getKoin().get(parameters = { parametersOf(this) })
+    }
     private val stateLiveData = MutableLiveData<AudioPlayerState>()
     fun observeState(): LiveData<AudioPlayerState> = stateLiveData
 
