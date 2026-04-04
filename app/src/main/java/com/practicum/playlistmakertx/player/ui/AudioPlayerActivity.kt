@@ -27,7 +27,9 @@ import org.koin.core.parameter.parametersOf
 class AudioPlayerActivity : AppCompatActivity() {
 
     private val viewModel: AudioPlayerViewModel by viewModel {
-        parametersOf(intent.getSerializableExtra("track_from_Adapter") as Track)
+        val track = intent.getSerializableExtra("track_from_Adapter") as? Track
+            ?: throw IllegalArgumentException("Track not found")
+        parametersOf(track)
     }
     private lateinit var playButton: ImageButton
     private lateinit var timerText: TextView

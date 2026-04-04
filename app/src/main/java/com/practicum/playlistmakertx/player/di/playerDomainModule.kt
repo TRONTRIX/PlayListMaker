@@ -6,7 +6,7 @@ import com.practicum.playlistmakertx.player.domain.impl.AudioPlayerInteractorImp
 import org.koin.dsl.module
 
 val playerDomainModule = module{
-    factory<AudioPlayerInteractor> { (listener: AudioPlayerListner) ->
-        AudioPlayerInteractorImpl(get(), listener)
+    factory<AudioPlayerInteractor> {
+        AudioPlayerInteractorImpl(get())
     }
 }

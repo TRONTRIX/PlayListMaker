@@ -23,17 +23,16 @@ class SearchHistoryRepositoryImpl(
 
     override fun saveTrack(track: Track) {
         val history = getHistory().toMutableList()
-        Log.d("History", "Before save: $history")
         history.removeAll { it.trackId == track.trackId }
-        Log.d("History", "After remove: $history")
+
         history.add(0, track)
-        Log.d("History", "After add: $history")
+
         if (history.size > maxSize) {
             history.removeAt(history.size - 1)
         }
         val jsonString = gson.toJson(history.toTypedArray())
         sharedPreferences.edit().putString(key, jsonString).apply()
-        Log.d("History", "Saved: $history")
+
     }
 
     override fun clear() {

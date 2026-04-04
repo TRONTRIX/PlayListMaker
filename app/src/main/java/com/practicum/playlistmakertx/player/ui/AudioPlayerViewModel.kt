@@ -15,18 +15,16 @@ import org.koin.java.KoinJavaComponent.inject
 
 
 class AudioPlayerViewModel(
-    private val track: Track
+    private val track: Track,
+    private val interactor: AudioPlayerInteractor
 ) : ViewModel(), AudioPlayerListner {
 
-    private val interactor: AudioPlayerInteractor by lazy {
-        getKoin().get(parameters = { parametersOf(this) })
-    }
     private val stateLiveData = MutableLiveData<AudioPlayerState>()
     fun observeState(): LiveData<AudioPlayerState> = stateLiveData
 
     init {
         stateLiveData.value = AudioPlayerState(PlaybackState.PREPARING, "0:30")
-        interactor.preparePlayer(track.previewUrl)
+        interactor.preparePlayer(track.previewUrl, this)  // передаём себя как listener
     }
 
     fun playPause() {
