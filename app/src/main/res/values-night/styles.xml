@@ -53,4 +53,19 @@
     <style name="networkLostImageOnSearchActivity">
         <item name="android:src">@drawable/not_internet_dark_120</item>
     </style>
+    <style name="CustomTabText" >
+        <item name="textAllCaps">false</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="colorPrimary">@color/black_YP</item>
+        <item name="colorOnPrimary">@color/white_YP</item>
+        <item name="colorPrimaryContainer">@color/white_YP</item>
+        <item name="colorOnSecondary">@color/black_YP</item>
+        <item name="colorSecondary">@color/white_YP</item>
+        <!-- Surface colors -->
+        <item name="colorSurface">@color/white_YP</item>
+        <item name="colorOnSurface">@color/black_YP</item>
+        <item name="colorAccent">@color/black_YP</item>
+        <!-- Background -->
+        <item name="colorOnBackground">@color/blue_YP</item>
+    </style>
 </resources>

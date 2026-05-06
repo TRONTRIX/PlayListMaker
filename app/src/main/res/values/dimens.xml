@@ -8,4 +8,6 @@
     <dimen name="Mini_standart_padding_8dp">8dp</dimen>
     <dimen name="Mini_standart_padding_6dp">6dp</dimen>
     <dimen name="Mini_standart_padding_5dp">5dp</dimen>
+    <dimen name="Mini_standart_padding_16dp">16dp</dimen>
+    <dimen name="Standart_padding_106dp">106dp</dimen>
 </resources>

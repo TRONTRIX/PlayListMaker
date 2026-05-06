@@ -63,7 +63,7 @@ class SearchViewModel(
 
     fun onClearHistoryClick() {
         historyInteractor.clearHistory()
-        updateHistory() // теперь updateHistory сама скроет историю, если она пуста
+        updateHistory()
     }
 
     fun onRetryClick() {
