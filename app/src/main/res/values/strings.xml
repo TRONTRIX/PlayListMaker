@@ -23,6 +23,12 @@
     <string name="year">Год</string>
     <string name="album">Альбом</string>
     <string name="trackTime">Длительность</string>
+    <string name="mediaEmpty">Ваша медиатека пуста</string>
+    <string name="newPlaylist">Новый плейлист</string>
+    <string name="youNotCreateNewPlaylist">Вы не создали \nни одного плейлиста</string>
+    <string name="favoriteTracks">Избранные треки</string>
+    <string name="myPlayList">Плейлисты</string>
+
 
 
 </resources>

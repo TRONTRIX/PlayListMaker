@@ -1,10 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:theme="@style/Theme.PlayListMakerTX"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".library.ui.LibraryActivity">
+    android:orientation="vertical"
+    android:background="?attr/colorPrimary">
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/tool_bar_in_libraryActivity"
+        android:theme="@style/Theme.PlayListMakerTX"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:navigationIcon="@drawable/arrow_back_16dp"
+        app:navigationIconTint="?attr/colorOnPrimary"
+        app:title="@string/Library"
+        app:titleTextColor="?attr/colorOnPrimary"
+        android:fontFamily="@font/ys_display_medium"/>
+    <com.google.android.material.tabs.TabLayout
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        style="@style/Theme.PlayListMakerTX"
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:fontFamily="@font/ys_display_medium"
+        android:textAllCaps="false"
+        app:tabMode="fixed"
+        android:background="@android:color/transparent"
+        app:tabIndicatorFullWidth="true"
+        app:tabPaddingStart="@dimen/Mini_standart_padding_16dp"
+        app:tabPaddingEnd="@dimen/Mini_standart_padding_16dp"
+        app:tabTextColor="?attr/colorOnPrimary"
+        app:tabSelectedTextColor="?attr/colorOnPrimary"
+        app:tabIndicatorColor="?attr/colorOnPrimary" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        style="@style/Theme.PlayListMakerTX"
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="top"
+    />
+
+</LinearLayout>

@@ -12,6 +12,7 @@ import com.practicum.playlistmakertx.player.di.playerViewModel
 import com.practicum.playlistmakertx.settings.di.settingDataModule
 import com.practicum.playlistmakertx.settings.di.settingDomainModule
 import com.practicum.playlistmakertx.settings.di.settingViewModelModule
+import com.practicum.playlistmakertx.library.di.libraryViewModelModule
 import networkModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.GlobalContext.startKoin
@@ -37,7 +38,8 @@ class App : Application() {
                 playerViewModel,
                 settingDataModule,
                 settingDomainModule,
-                settingViewModelModule
+                settingViewModelModule,
+                libraryViewModelModule
             )
         }
     }
