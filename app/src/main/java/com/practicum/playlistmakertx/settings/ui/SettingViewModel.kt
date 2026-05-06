@@ -17,6 +17,8 @@ class SettingViewModel(
     }
 
     fun onThemeToggled(isDark: Boolean) {
+        val current = themeStateLiveData.value
+        if (current == isDark) return
         themeInteractor.setDarkTheme(isDark)
         themeStateLiveData.value = isDark
     }

@@ -15,16 +15,22 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.google.android.material.appbar.MaterialToolbar
 import com.practicum.playlistmakertx.R
-import com.practicum.playlistmakertx.creator.Creator
+
 import com.practicum.playlistmakertx.search.domain.models.Track
 import com.practicum.playlistmakertx.player.data.AudioPlayerListner
 import com.practicum.playlistmakertx.player.data.AudioPlayerRepositoryImpl
 import com.practicum.playlistmakertx.player.domain.api.AudioPlayerInteractor
 import com.practicum.playlistmakertx.player.presentation.PlaybackState
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 class AudioPlayerActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: AudioPlayerViewModel
+    private val viewModel: AudioPlayerViewModel by viewModel {
+        val track = intent.getSerializableExtra("track_from_Adapter") as? Track
+            ?: throw IllegalArgumentException("Track not found")
+        parametersOf(track)
+    }
     private lateinit var playButton: ImageButton
     private lateinit var timerText: TextView
     private var lastClickTime = 0L
@@ -70,10 +76,7 @@ class AudioPlayerActivity : AppCompatActivity() {
                 finish()
                 return
             }
-        viewModel = ViewModelProvider(
-            this,
-            AudioPlayerViewModelFactory(track)
-        )[AudioPlayerViewModel::class.java]
+
     }
 
     private fun observeViewModel() {

@@ -24,11 +24,14 @@ import com.google.android.material.appbar.MaterialToolbar
 import com.practicum.playlistmakertx.R
 import com.practicum.playlistmakertx.player.ui.AudioPlayerActivity
 import com.practicum.playlistmakertx.search.presentation.SearchState
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class SearchActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: SearchViewModel
+
+    private val viewModel: SearchViewModel by viewModel()
+    private var isRestoring = false
 
     private lateinit var inputEditText: EditText
     private lateinit var clearButton: ImageView
@@ -51,7 +54,7 @@ class SearchActivity : AppCompatActivity() {
         initViews()
         setupToolbar()
         setupAdapters()
-        setupViewModel()
+        //setupViewModel()
         observeViewModel()
         setupListeners()
 
@@ -62,10 +65,17 @@ class SearchActivity : AppCompatActivity() {
         }
 
         if (savedInstanceState != null) {
+            isRestoring = true
             val savedText = savedInstanceState.getString(SEARCH_TEXT, "")
+            viewModel.restoreText(savedText)
             inputEditText.setText(savedText)
-            viewModel.onQueryChanged(savedText)
+            clearButton.visibility = if (savedText.isNotEmpty()) View.VISIBLE else View.GONE
+            inputEditText.post {
+                isRestoring = false
+                viewModel.onFocusChanged(inputEditText.hasFocus())
+            }
         }
+
     }
 
     private fun initViews() {
@@ -94,9 +104,7 @@ class SearchActivity : AppCompatActivity() {
         recyclerViewHistory.adapter = historyCardMusicAdapter
     }
 
-    private fun setupViewModel() {
-        viewModel = ViewModelProvider(this, SearchViewModelFactory(application))[SearchViewModel::class.java]
-    }
+
 
     private fun observeViewModel() {
         viewModel.observeState().observe(this) { state ->
@@ -105,9 +113,12 @@ class SearchActivity : AppCompatActivity() {
     }
 
     private fun setupListeners() {
+        clearButton.visibility = View.GONE
+
         inputEditText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (isRestoring) return
                 viewModel.onQueryChanged(s?.toString() ?: "")
                 clearButton.visibility = if (s.isNullOrEmpty()) View.GONE else View.VISIBLE
             }

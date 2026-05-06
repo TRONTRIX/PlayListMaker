@@ -6,10 +6,9 @@ import com.practicum.playlistmakertx.player.domain.api.AudioPlayerRepository
 
 class AudioPlayerInteractorImpl(
     private val repository: AudioPlayerRepository,
-    private val listener: AudioPlayerListner
 ) : AudioPlayerInteractor {
 
-    override fun preparePlayer(url: String) {
+    override fun preparePlayer(url: String, listener: AudioPlayerListner) {
         repository.prepare(url, listener)
     }
 
