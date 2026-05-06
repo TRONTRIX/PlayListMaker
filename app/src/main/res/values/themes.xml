@@ -15,6 +15,7 @@
         <item name="colorAccent">@color/grey_text_YP</item>
         <!-- Background -->
         <item name="colorOnBackground">@color/blue_YP</item>
+
     </style>
 
 </resources>
